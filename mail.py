@@ -12,11 +12,11 @@ class Mail:
         self.username = username
         self.password = password
 
+    def send(self, to, subject, content):
         # login to the smtp server
         self.server = smtplib.SMTP(self.smtp_addr)
         self.server.login(self.username, self.password)
-
-    def send(self, to, subject, content):
+        
         # 构造MIMEMultipart对象做为根容器
         main_msg = email.MIMEMultipart.MIMEMultipart()
         

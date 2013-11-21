@@ -27,9 +27,9 @@ def moniter(m, send_to, high, low):
                     if time.time() - last_sent > 5 * 60:
                         m.send(send_to, "BTC Ticker Warning",
                             "the price now is " + str(price))
+                        last_sent = time.time()
                 except:
                     continue
-                last_sent = time.time()
                 break
 
         print "Price: ￥%s  Buy: ￥%s  Sell: ￥%s" % (data['ticker']['last'],

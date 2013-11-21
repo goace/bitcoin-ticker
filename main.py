@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-  
 import mail
 import simplejson
 import urllib2
 import time
-from config import *
 
 
 def moniter(m, send_to, high, low):
@@ -22,21 +21,19 @@ def moniter(m, send_to, high, low):
 
         price = float(data['ticker']['last'])
         if price > high or price < low:
-            for i in range(3):
+            if time.time() - last_sent > 5 * 60:
                 try:
-                    if time.time() - last_sent > 5 * 60:
-                        m.send(send_to, "BTC Ticker Warning",
-                            "the price now is " + str(price))
-                        last_sent = time.time()
-                except:
-                    continue
-                break
+                    m.send(send_to, "BTC Ticker Warning", 
+                           "the price now is " + str(price))
+                    print "sent email"
+                    last_sent = time.time()
+                except Exception, e:
+                    print e
 
         print "Price: ￥%s  Buy: ￥%s  Sell: ￥%s" % (data['ticker']['last'],
                     data['ticker']['buy'], data['ticker']['sell'])
         time.sleep(3)
-
-
+        
 if __name__ == "__main__":
     m = mail.Mail(account, smtp_addr, account, password)
     moniter(m, send_to, high, low)

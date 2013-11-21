@@ -35,10 +35,4 @@ class Mail:
         
         #注意, 这里的第二个参数是个list, 否则如果给多人发邮件, 只有第一个人可以收到
         self.server.sendmail(self.my_name, to.split(','), full_text)
-        
-if __name__ == "__main__":
-    mailEntry = ("support@meepo.org", "madaokuan@gmail.com", "smtp.ym.163.com", "support@meepo.org", "support654312")
-    print 'sending...'
-    sendmail(mailEntry, "test mail", "attachment test")
-    print 'done'
 

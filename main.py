@@ -5,6 +5,7 @@ import urllib2
 import time
 from config import *
 
+
 def moniter(m, send_to, high, low):
 
     if currency == 'CHN':
@@ -38,14 +39,15 @@ def moniter(m, send_to, high, low):
         if price > high or price < low:
             if time.time() - last_sent > 5 * 60:
                 try:
-                    m.send(send_to, "BTC Ticker Warning", 
+                    m.send(send_to, "BTC Ticker Warning",
                            "the price now is " + str(price))
                     print "sent email"
                     last_sent = time.time()
                 except Exception, e:
                     print e
 
-        print("Price: " + symbol + str(price) + " Buy: " + symbol + buy + "  Sell: " + symbol + sell)
+        print("Price: " + symbol + str(price) + " Buy: " + symbol + buy +
+              "  Sell: " + symbol + sell)
         time.sleep(3)
 
 if __name__ == "__main__":

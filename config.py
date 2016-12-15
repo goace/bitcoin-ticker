@@ -11,6 +11,10 @@ password  = "xxxx"
 # it can be same with the sending email
 send_to   = "xxx@xxx.comm"
 
+# currency you want to use
+# Options options can be found at https://blockchain.info/ticker
+currency  = "CHN"
+
 # if the price is higher than "high" or less than "low"
 # it will warn
 high      = 4200
